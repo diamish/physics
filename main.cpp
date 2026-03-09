@@ -1,11 +1,12 @@
 // simple CLI scaffold for the pipeline
 #include "iostream"
 #include <string>
-#include "HDF5Reader.cpp/HDF5Reader.h"
+#include "HDF5Reader.h"
 #include "PSD.h"
 #include "Whiten.h"
 #include "BurstDetector.h"
 #include <getopt.h>
+#include <fstream>
 
 void print_usage() {
     std::cout << "Usage: ligo_scan --input file.hdf5 --detector H1 --start 0 --end 60 --fs 4096 --out candidates.csv\n";
