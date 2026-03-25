@@ -13,7 +13,7 @@ void print_usage() {
 }
 
 int main(int argc, char** argv) {
-    std::string input_file = "downloads/lasa_cc_student_starter/lasa_cc/data/gw_sample.csv";
+    std::string input_file = "../../data/gw_sample.csv";
     std::string detector = "H1";
     double start_time = 0.0;
     double end_time = 60.0;
