@@ -1,4 +1,5 @@
 #include "HDF5Reader.h"
+#include <H5Cpp.h>
 #include <stdexcept>
 #include <iostream>
 
@@ -7,7 +8,7 @@ using namespace H5;
 StrainSeries HDF5Reader::read_strain(const std::string& file_path, const std::string& dataset) {
     StrainSeries out;
     try {
-        H5File file("downloads/lasa_cc_student_starter/lasa_cc/data/gw_sample.csv", H5F_ACC_RDONLY);
+        H5File file("../../data/gw_sample.hdf5", H5F_ACC_RDONLY);
 
         // Attempt to open dataset path commonly used in GWOSC HDF5 files.
         DataSet ds = file.openDataSet(dataset);
