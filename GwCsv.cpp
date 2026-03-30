@@ -6,27 +6,28 @@
 namespace lacc::physics {
 
 GwSeries read_gw_csv(const std::string& path) {
-  std::ifstream in(path);
-  if (!in) throw std::runtime_error("Failed to open GW CSV: " + path);
+    std::ifstream in(path);
+    if (!in) throw std::runtime_error("Failed to open file");
 
-  GwSeries s;
-  std::string line;
-  if (!std::getline(in, line)) throw std::runtime_error("Empty GW CSV: " + path); // header
+    GwSeries s;
+    std::string line;
 
-  while (std::getline(in, line)) {
-    if (line.empty()) continue;
-    std::stringstream ss(line);
-    std::string a, b;
-    if (!std::getline(ss, a, ',')) continue;
-    if (!std::getline(ss, b, ',')) continue;
-    s.t.push_back(std::stod(a));
-    s.strain.push_back(std::stod(b));
-  }
+    std::getline(in, line); // header
 
-  if (s.t.empty() || s.t.size() != s.strain.size())
-    throw std::runtime_error("GW CSV parse error: " + path);
+    while (std::getline(in, line)) {
+        if (line.empty()) continue;
 
-  return s;
+        std::stringstream ss(line);
+        std::string a, b;
+
+        std::getline(ss, a, ',');
+        std::getline(ss, b, ',');
+
+        s.t.push_back(std::stod(a));
+        s.strain.push_back(std::stod(b));
+    }
+
+    return s;
 }
 
 } // namespace lacc::physics
